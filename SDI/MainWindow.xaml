@@ -17,5 +17,8 @@
             <Label x:Name="lbMsg" />
         </StackPanel>
         <ContentControl x:Name="ccHost" />
+        <TabControl x:Name="tabHost">
+            
+        </TabControl>
     </DockPanel>
 </Window>

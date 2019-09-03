@@ -15,18 +15,15 @@ using System.Windows.Shapes;
 
 namespace SDI.Vistas {
     /// <summary>
-    /// Lógica de interacción para ucPersonasLST.xaml
+    /// Lógica de interacción para ucPersonasFRM.xaml
     /// </summary>
-    public partial class ucPersonasLST : UserControl {
-        public ucPersonasLST() {
+    public partial class ucPersonasFRM : UserControl {
+        public ucPersonasFRM() {
             InitializeComponent();
         }
 
-        private void Salir_Click(object sender, RoutedEventArgs e) {
-            MainWindow.Actual.Cambia(null);
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            MainWindow.Actual.Cambia(new ucPersonasLST());
         }
-        private void Ver_Click(object sender, RoutedEventArgs e) {
-            MainWindow.Actual.Cambia(new ucPersonasFRM());
-       }
     }
 }

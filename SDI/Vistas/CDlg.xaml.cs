@@ -33,5 +33,12 @@ namespace SDI.Vistas {
             Nombre = "Adiós mundo";
             this.DialogResult = false;
         }
+
+        public static CDlg Create(UserControl uc, string title) {
+            var frm = new CDlg();
+            frm.ccHost.Content = uc;
+            frm.Title = title;
+            return frm;
+        }
     }
 }

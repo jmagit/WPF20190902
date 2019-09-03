@@ -19,8 +19,10 @@ namespace SDI {
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        public static MainWindow Actual { get; set; }
         public MainWindow() {
             InitializeComponent();
+            Actual = this;
         }
 
         private void Modeless_Click(object sender, RoutedEventArgs e) {
@@ -35,11 +37,10 @@ namespace SDI {
             frm.Show();
         }
         private void CDlg_Click(object sender, RoutedEventArgs e) {
-            CDlg frm = new CDlg();
-            frm.Title = "OwnerModeless";
+            CDlg frm = CDlg.Create(new ucProductos(), "Productos");
             frm.Owner = this;
             if (frm.ShowDialog() == true) {
-                lbMsg.Content = "Acepta";                
+                lbMsg.Content = "Acepta";
             } else {
                 lbMsg.Content = "Cancela";
             }
@@ -48,15 +49,27 @@ namespace SDI {
         private void Personas_Click(object sender, RoutedEventArgs e) {
             var uc = new ucPersonasLST();
             // ...
-            ccHost.Content = uc;
+            //ccHost.Content = uc;
+            var tab = new TabItem();
+            tab.Content = uc;
+            tab.Header = "Personas";
+            tabHost.Items.Add(tab);
         }
         private void Productos_Click(object sender, RoutedEventArgs e) {
             var uc = new ucProductos();
             // ...
-            ccHost.Content = uc;
+            //ccHost.Content = uc;
+            var tab = new TabItem();
+            tab.Content = uc;
+            tab.Header = "Productos";
+            tabHost.Items.Add(tab);
         }
         private void Limpiar_Click(object sender, RoutedEventArgs e) {
             ccHost.Content = null;
+        }
+
+        public void Cambia(UserControl uc) {
+            ccHost.Content = uc;
         }
     }
 }

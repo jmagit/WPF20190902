@@ -18,11 +18,11 @@
         <TextBlock FontSize="24" FontStyle="Italic" >Mantenimiento de <LineBreak/> <Bold>Personas</Bold></TextBlock>
         <DataGrid Grid.Row="1" />
         <StackPanel Grid.Column="1" Grid.RowSpan="2" >
-            <Button>Ver</Button>
+            <Button Click="Ver_Click">Ver</Button>
             <Button>Añadir</Button>
             <Button>Modificar</Button>
             <Button>Borrar</Button>
-            <Button>Salir</Button>
+            <Button Click="Salir_Click">Salir</Button>
         </StackPanel>
 
     </Grid>
