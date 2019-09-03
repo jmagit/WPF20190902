@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Demos"
              mc:Ignorable="d" Width="609.148" Height="395.114" >
+    <UserControl.Resources>
+        <local:MisComandos x:Key="cmd" />
+
+    </UserControl.Resources>
     <UniformGrid Rows="3" Columns="3">
-        <Button />
+        <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource cmd}}"
+                    CommandParameter="Otro control"/>
         <Button />
         <Button />
         <Button />

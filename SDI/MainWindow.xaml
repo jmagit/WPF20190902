@@ -8,17 +8,18 @@
         Title="Demo de SDI" Height="450" Width="800">
     <DockPanel>
         <StackPanel Width="100" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-            <Button Content="Modeless" Click="Modeless_Click" />
-            <Button Content="SemiModeless" Click="OwnerModeless_Click" />
-            <Button Content="CDlg" Click="CDlg_Click" />
+            <Button Content="Modeless" Click="Modeless_Click" Background="{DynamicResource ColorBoton}" />
+            <Button Content="SemiModeless" Click="OwnerModeless_Click" Background="{DynamicResource ColorBoton}" />
+            <Button Content="CDlg" Click="CDlg_Click" Background="{DynamicResource ColorBoton}" />
             <Button Content="UC1" Click="Personas_Click" />
             <Button Content="UC2" Click="Productos_Click" />
             <Button Content="Limpiar" Click="Limpiar_Click" />
+            <Button Content="Salir" Click="Salir_Click" />
             <Label x:Name="lbMsg" />
         </StackPanel>
         <ContentControl x:Name="ccHost" />
         <TabControl x:Name="tabHost">
-            
+
         </TabControl>
     </DockPanel>
 </Window>

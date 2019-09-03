@@ -7,7 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="72">Persona</TextBlock>
-        <Button Width="100" Height="50" Click="Button_Click">Volver</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="72" Grid.ColumnSpan="2">Persona</TextBlock>
+        <Button Width="100" Height="50" Click="Button_Click" Margin="3,0,0,0" Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">Volver</Button>
     </Grid>
 </UserControl>

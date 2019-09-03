@@ -10,21 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SDI.Vistas {
     /// <summary>
-    /// Lógica de interacción para ucPersonasFRM.xaml
+    /// Lógica de interacción para Hija.xaml
     /// </summary>
-    public partial class ucPersonasFRM : UserControl {
-        public ucPersonasFRM() {
+    public partial class Hija : Window {
+        public Hija() {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            (App.Current.MainWindow as MainWindow).Cambia(new ucPersonasLST());
-            //MainWindow.Actual.Cambia(new ucPersonasLST());
         }
     }
 }

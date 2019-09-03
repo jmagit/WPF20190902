@@ -28,5 +28,13 @@ namespace SDI.Vistas {
         private void Ver_Click(object sender, RoutedEventArgs e) {
             MainWindow.Actual.Cambia(new ucPersonasFRM());
        }
+
+        private void BtnNuevo_Click(object sender, RoutedEventArgs e) {
+            popDlg.IsOpen = true;
+        }
+
+        private void btnCerrarPOP_Click(object sender, RoutedEventArgs e) {
+            popDlg.IsOpen = false;
+        }
     }
 }

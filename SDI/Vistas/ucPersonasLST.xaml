@@ -18,12 +18,19 @@
         <TextBlock FontSize="24" FontStyle="Italic" >Mantenimiento de <LineBreak/> <Bold>Personas</Bold></TextBlock>
         <DataGrid Grid.Row="1" />
         <StackPanel Grid.Column="1" Grid.RowSpan="2" >
-            <Button Click="Ver_Click">Ver</Button>
-            <Button>Añadir</Button>
+            <Button Click="Ver_Click" Background="{DynamicResource ColorBoton}">Ver</Button>
+            <Button x:Name="btnNuevo" Click="BtnNuevo_Click">Añadir</Button>
             <Button>Modificar</Button>
             <Button>Borrar</Button>
             <Button Click="Salir_Click">Salir</Button>
         </StackPanel>
+        <Popup x:Name="popDlg" PopupAnimation="Slide" Placement="Left" PlacementTarget="{Binding ElementName=btnNuevo, Mode=OneWay}" AllowsTransparency="True" Width="200" Height="100">
+            <Border CornerRadius="10" Background="#FFFDFDD4" Padding="5">
+                <Grid>
+                    <Button x:Name="btnCerrarPOP" Content="Cerrar" HorizontalContentAlignment="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnCerrarPOP_Click" />
+                </Grid>
+            </Border>
+        </Popup>
 
     </Grid>
 </UserControl>

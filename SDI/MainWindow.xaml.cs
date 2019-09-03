@@ -37,7 +37,7 @@ namespace SDI {
             frm.Show();
         }
         private void CDlg_Click(object sender, RoutedEventArgs e) {
-            CDlg frm = CDlg.Create(new ucProductos(), "Productos");
+            CDlg frm = CDlg.Create(new ucPersonasLST(), "Productos");
             frm.Owner = this;
             if (frm.ShowDialog() == true) {
                 lbMsg.Content = "Acepta";
@@ -57,6 +57,7 @@ namespace SDI {
         }
         private void Productos_Click(object sender, RoutedEventArgs e) {
             var uc = new ucProductos();
+            uc.Titulo = "Los productos";
             // ...
             //ccHost.Content = uc;
             var tab = new TabItem();
@@ -66,6 +67,9 @@ namespace SDI {
         }
         private void Limpiar_Click(object sender, RoutedEventArgs e) {
             ccHost.Content = null;
+        }
+        private void Salir_Click(object sender, RoutedEventArgs e) {
+            App.Current.Shutdown();
         }
 
         public void Cambia(UserControl uc) {

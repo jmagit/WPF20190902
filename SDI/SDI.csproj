@@ -58,6 +58,9 @@
     <Compile Include="Vistas\CDlg.xaml.cs">
       <DependentUpon>CDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Hija.xaml.cs">
+      <DependentUpon>Hija.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\ucPersonasLST.xaml.cs">
       <DependentUpon>ucPersonasLST.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vistas\CDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\Hija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Imagenes\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
