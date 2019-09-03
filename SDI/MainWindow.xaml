@@ -1,0 +1,19 @@
+﻿<Window x:Class="SDI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDI"
+        mc:Ignorable="d"
+        Title="Demo de SDI" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel Width="100" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+            <Button Content="Modeless" Click="Modeless_Click" />
+            <Button Content="SemiModeless" Click="OwnerModeless_Click" />
+            <Button Content="CDlg" Click="CDlg_Click" />
+            <Button Content="UC1" />
+            <Button Content="UC2" />
+        </StackPanel>
+        <ContentControl x:Name="ccHost" />
+    </DockPanel>
+</Window>

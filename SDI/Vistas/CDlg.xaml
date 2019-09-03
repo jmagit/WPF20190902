@@ -1,0 +1,16 @@
+﻿<Window x:Class="SDI.Vistas.CDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDI.Vistas"
+        mc:Ignorable="d"
+        Title="CDlg" Height="450" Width="800" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button x:Name="btnAceptar" Content="Aceptar" IsDefault="True" Margin="0,0,5,0" Click="BtnAceptar_Click" />
+            <Button x:Name="btnCancelar" Content="Cancelar" IsCancel="True" Margin="0,0,5,0" Click="BtnCancelar_Click" />
+        </StackPanel>
+        <Grid />
+    </DockPanel>
+</Window>

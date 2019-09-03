@@ -9,11 +9,11 @@
     <DockPanel>
         <Canvas Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" DockPanel.Dock="Top" Height="30"/>
         <Canvas Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" DockPanel.Dock="Bottom" Height="30"/>
-        <StackPanel Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Width="148" >
-            <Button Content="Opción 1" />
-            <Button Content="Opción 2" />
-            <Button Content="Opción 3" />
-            <Button Content="Opción 4" />
+        <StackPanel Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Width="133" >
+            <Button Content="Opción 1" Margin="3,2,3,0" />
+            <Button Content="Opción 2" Margin="3,2,3,0" />
+            <Button Content="Opción 3" Margin="3,2,3,0" />
+            <Button Content="Opción 4" Margin="3,2,3,0" />
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -29,7 +29,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Id:" />
+            <Label Content="Id:" VerticalAlignment="Center" />
             <Button Content='Texto&apos;s' Width="100" Height="24" Background="{x:Null}" Grid.Column="1" />
             <Button Grid.Column="2" Content="Algo" />
             <Button Grid.Column="3" Content="Otro" />
@@ -38,24 +38,24 @@
             <Label Content="Etiqueta:" Grid.Row="2" Grid.Column="2" />
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" Content="Texto &lt;-- DVD" Grid.ColumnSpan="2" Grid.Column="3" />
             <WrapPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5,1,0,4">
                     <Label Content="Etiqueta:" />
                     <TextBox Grid.Column="1" MinWidth="100" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5,1,0,4">
                     <Label Content="Etiqueta:" />
                     <TextBox Grid.Column="1" MinWidth="100" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5,1,0,4">
                     <Label Content="Etiqueta:" />
                     <TextBox Grid.Column="1" MinWidth="100" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5,1,0,4">
                     <Label Content="Etiqueta:" />
                     <TextBox Grid.Column="1" MinWidth="100" />
                 </StackPanel>
 
-                <Grid>
+                <Grid Margin="5,1,0,4" MinWidth="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
