@@ -11,8 +11,10 @@
             <Button Content="Modeless" Click="Modeless_Click" />
             <Button Content="SemiModeless" Click="OwnerModeless_Click" />
             <Button Content="CDlg" Click="CDlg_Click" />
-            <Button Content="UC1" />
-            <Button Content="UC2" />
+            <Button Content="UC1" Click="Personas_Click" />
+            <Button Content="UC2" Click="Productos_Click" />
+            <Button Content="Limpiar" Click="Limpiar_Click" />
+            <Label x:Name="lbMsg" />
         </StackPanel>
         <ContentControl x:Name="ccHost" />
     </DockPanel>

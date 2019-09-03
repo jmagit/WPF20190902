@@ -35,12 +35,28 @@ namespace SDI {
             frm.Show();
         }
         private void CDlg_Click(object sender, RoutedEventArgs e) {
-            Window frm = new CDlg();
+            CDlg frm = new CDlg();
             frm.Title = "OwnerModeless";
             frm.Owner = this;
             if (frm.ShowDialog() == true) {
-
+                lbMsg.Content = "Acepta";                
+            } else {
+                lbMsg.Content = "Cancela";
             }
+            lbMsg.Content = frm.Nombre;
+        }
+        private void Personas_Click(object sender, RoutedEventArgs e) {
+            var uc = new ucPersonasLST();
+            // ...
+            ccHost.Content = uc;
+        }
+        private void Productos_Click(object sender, RoutedEventArgs e) {
+            var uc = new ucProductos();
+            // ...
+            ccHost.Content = uc;
+        }
+        private void Limpiar_Click(object sender, RoutedEventArgs e) {
+            ccHost.Content = null;
         }
     }
 }

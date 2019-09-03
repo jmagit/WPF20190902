@@ -21,11 +21,16 @@ namespace SDI.Vistas {
             InitializeComponent();
         }
 
+        public string Nombre { get; set; } = "Hola mundo";
+
         private void BtnAceptar_Click(object sender, RoutedEventArgs e) {
+            // ...
+            Nombre = "Hola mundo";
             this.DialogResult = true;
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e) {
+            Nombre = "Adiós mundo";
             this.DialogResult = false;
         }
     }

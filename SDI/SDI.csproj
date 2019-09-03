@@ -58,6 +58,12 @@
     <Compile Include="Vistas\CDlg.xaml.cs">
       <DependentUpon>CDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ucPersonasLST.xaml.cs">
+      <DependentUpon>ucPersonasLST.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ucProductos.xaml.cs">
+      <DependentUpon>ucProductos.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +77,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vistas\CDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ucPersonasLST.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ucProductos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
