@@ -24,5 +24,13 @@ namespace Demos {
             int i = 16;
             var s = $"El valor es {i} dd ";
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void UcDemo_Loaded(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

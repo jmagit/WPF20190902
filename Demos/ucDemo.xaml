@@ -10,8 +10,8 @@
 
     </UserControl.Resources>
     <UniformGrid Rows="3" Columns="3">
-        <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource cmd}}"
-                    CommandParameter="Otro control"/>
+        <Button  Command="{Binding Abrir, Mode=OneWay, Source={StaticResource cmd}}"
+                    CommandParameter="Boton" Content="{Binding Nombre, Source={StaticResource cmd}}"/>
         <Button />
         <Button />
         <Button />

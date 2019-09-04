@@ -49,21 +49,21 @@ namespace SDI {
         private void Personas_Click(object sender, RoutedEventArgs e) {
             var uc = new ucPersonasLST();
             // ...
-            //ccHost.Content = uc;
-            var tab = new TabItem();
-            tab.Content = uc;
-            tab.Header = "Personas";
-            tabHost.Items.Add(tab);
+            ccHost.Content = uc;
+            //var tab = new TabItem();
+            //tab.Content = uc;
+            //tab.Header = "Personas";
+            //tabHost.Items.Add(tab);
         }
         private void Productos_Click(object sender, RoutedEventArgs e) {
             var uc = new ucProductos();
             uc.Titulo = "Los productos";
             // ...
-            //ccHost.Content = uc;
-            var tab = new TabItem();
-            tab.Content = uc;
-            tab.Header = "Productos";
-            tabHost.Items.Add(tab);
+            ccHost.Content = uc;
+            //var tab = new TabItem();
+            //tab.Content = uc;
+            //tab.Header = "Productos";
+            //tabHost.Items.Add(tab);
         }
         private void Limpiar_Click(object sender, RoutedEventArgs e) {
             ccHost.Content = null;
