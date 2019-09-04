@@ -8,9 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <vm:PersonasVM x:Key="VM" />
     </UserControl.Resources>
-    <Grid>
+    <Grid DataContext="{Binding Mode=OneWay, Source={StaticResource VM}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -19,8 +20,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="24" FontStyle="Italic" >Mantenimiento de <LineBreak/> <Bold>Personas</Bold></TextBlock>
-        <DataGrid Grid.Row="1" />
+        <TextBlock FontSize="24" FontStyle="Italic" Visibility="{Binding VerDetalle, Converter={StaticResource BooleanToVisibilityConverter}}" >Mantenimiento de <LineBreak/> <Bold>Personas</Bold></TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Listado}" SelectedIndex="0" SelectedItem="{Binding Elemento}" />
         <StackPanel Grid.Column="1" Grid.RowSpan="2" >
             <Button Click="Ver_Click" Background="{DynamicResource ColorBoton}">Ver</Button>
             <Button x:Name="btnNuevo" Click="BtnNuevo_Click">Añadir</Button>
@@ -31,6 +32,10 @@
                     CommandParameter="true">A</Button>
             <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource VM}}"
                     CommandParameter="false">C</Button>
+            <TextBox Height="23" TextWrapping="Wrap" 
+                     Text="{Binding Elemento.Nombre, UpdateSourceTrigger=PropertyChanged, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}"/>
+            <TextBox Height="23" TextWrapping="Wrap" 
+                     Text="{Binding Elemento.IdPersona, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, StringFormat=\{0:C\}}"/>
         </StackPanel>
         <Popup x:Name="popDlg" PopupAnimation="Slide" Placement="Left" PlacementTarget="{Binding ElementName=btnNuevo, Mode=OneWay}" AllowsTransparency="True" Width="200" Height="100" IsOpen="{Binding VerDetalle, Source={StaticResource VM}}">
             <Border CornerRadius="10" Background="#FFFDFDD4" Padding="5">

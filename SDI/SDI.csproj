@@ -57,6 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\ObservableBase.cs" />
+    <Compile Include="Model\Persona.cs" />
+    <Compile Include="Model\PersonaService.cs" />
     <Compile Include="ViewModels\PersonasVM.cs" />
     <Compile Include="Vistas\CDlg.xaml.cs">
       <DependentUpon>CDlg.xaml</DependentUpon>
