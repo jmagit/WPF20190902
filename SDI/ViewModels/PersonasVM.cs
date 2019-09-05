@@ -10,6 +10,85 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SDI.ViewModels {
+    //public class BaseMntViewModel<E, S> : ObservableBase {
+    //    private ObservableCollection<E> listado;
+
+    //    public ObservableCollection<E> Listado {
+    //        get => listado;
+    //        set { listado = value; RaisePropertyChanged(nameof(Listado)); }
+    //    }
+    //    private E elemento;
+
+    //    public E Elemento {
+    //        get => elemento;
+    //        set { elemento = value; RaisePropertyChanged(nameof(Elemento)); }
+    //    }
+
+    //    private S srv = new S();
+
+    //    public BaseMntViewModel() {
+    //        Listado = srv.getAll();
+    //    }
+
+    //    public event Action<EventArgs> AbrirDetalle;
+    //    public event Action<EventArgs> CerrarDetalle;
+    //    public event Action<ConsoleCancelEventArgs> PedirConfirmacion;
+
+    //    private bool verDetalle = false;
+
+    //    public bool VerDetalle {
+    //        get => verDetalle;
+    //        set { verDetalle = value; RaisePropertyChanged(nameof(VerDetalle)); }
+    //    }
+
+    //    public ICommand Abrir {
+    //        get {
+    //            return new DelegateCommand<bool>(
+    //                cmdParam => {
+    //                    NavigationController.AbrirPersonasListCmd();
+    //                }
+    //                );
+    //        }
+    //    }
+    //    public ICommand Modificar {
+    //        get {
+    //            return new DelegateCommand<bool>(
+    //                cmdParam => {
+    //                    NavigationController.AbrirPersonasDetCmd(this);
+    //                }
+    //                );
+    //        }
+    //    }
+
+    //    protected virtual bool canSalir() { return true; }
+    //    public ICommand Salir {
+    //        get {
+    //            return new DelegateCommand<bool>(
+    //                cmdParam => {
+    //                    if (canSalir() && CerrarDetalle != null)
+    //                        CerrarDetalle(new EventArgs());
+    //                }
+    //                );
+    //        }
+    //    }
+
+    //    private void GuardarCmd() {
+    //        //if()
+    //        //...
+    //        srv.Modify(Elemento);
+    //        VerDetalle = false;
+    //    }
+
+    //    public ICommand Guardar {
+    //        get { return new DelegateCommand(GuardarCmd); }
+    //    }
+
+    //}
+
+    //public class ProductosVM:BaseMntViewModel<Produto, ProductoService> {
+
+    //}
+
     public class PersonasVM : ObservableBase {
         private ObservableCollection<Persona> listado;
 
@@ -30,9 +109,9 @@ namespace SDI.ViewModels {
             Listado = srv.getAll();
         }
 
-        event Action<EventArgs> AbrirDetalle;
-        event Action<EventArgs> CerrarDetalle;
-        event Action<ConsoleCancelEventArgs> PedirConfirmacion;
+        public event Action<EventArgs> AbrirDetalle;
+        public event Action<EventArgs> CerrarDetalle;
+        public event Action<ConsoleCancelEventArgs> PedirConfirmacion;
 
         private bool verDetalle = false;
 
@@ -45,7 +124,26 @@ namespace SDI.ViewModels {
             get {
                 return new DelegateCommand<bool>(
                     cmdParam => {
-                        VerDetalle = cmdParam;
+                        NavigationController.AbrirPersonasListCmd();
+                    }
+                    );
+            }
+        }
+        public ICommand Modificar {
+            get {
+                return new DelegateCommand<bool>(
+                    cmdParam => {
+                        NavigationController.AbrirPersonasDetCmd(this);
+                    }
+                    );
+            }
+        }
+        public ICommand Salir {
+            get {
+                return new DelegateCommand<bool>(
+                    cmdParam => {
+                        if(CerrarDetalle != null)
+                            CerrarDetalle(new EventArgs());
                     }
                     );
             }

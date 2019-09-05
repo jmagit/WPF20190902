@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\Cadenas.cs" />
     <Compile Include="Converters\Visivilidad.cs" />
+    <Compile Include="NavigationController.cs" />
     <Compile Include="ViewModels\PersonasVM.cs" />
     <Compile Include="Vistas\CDlg.xaml.cs">
       <DependentUpon>CDlg.xaml</DependentUpon>

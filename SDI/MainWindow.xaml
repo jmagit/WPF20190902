@@ -11,7 +11,7 @@
             <Button Content="Modeless" Click="Modeless_Click" Background="{DynamicResource ColorBoton}" />
             <Button Content="SemiModeless" Click="OwnerModeless_Click" Background="{DynamicResource ColorBoton}" />
             <Button Content="CDlg" Click="CDlg_Click" Background="{DynamicResource ColorBoton}" />
-            <Button Content="UC1" Click="Personas_Click" />
+            <Button Content="Personas" Command="local:NavigationController.AbrirPersonasList" />
             <Button Content="UC2" Click="Productos_Click" />
             <Button Content="Limpiar" Click="Limpiar_Click" />
             <Button Content="Salir" Click="Salir_Click" />

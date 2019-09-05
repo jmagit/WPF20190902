@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SDI.Model {
     public partial class Persona: EntityBase {
@@ -12,6 +13,8 @@ namespace SDI.Model {
             get => idPersona;
             set { idPersona = value; RaisePropertyChanged(nameof(IdPersona)); }
         }
+        [Required]
+        [MaxLength(10)]
         private string nombre = "";
         public string Nombre {
             get => nombre;

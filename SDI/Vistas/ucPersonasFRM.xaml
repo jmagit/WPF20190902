@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SDI.Vistas"
-             mc:Ignorable="d" 
+              xmlns:vm="clr-namespace:SDI.ViewModels"
+            mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <vm:PersonasVM x:Key="VM" />
+    </UserControl.Resources>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="4*" />
@@ -19,5 +23,7 @@
         </Grid.RowDefinitions>
         <TextBlock FontSize="72" Grid.ColumnSpan="2">Persona</TextBlock>
         <Button Width="100" Height="50" Click="Button_Click" Margin="3,0,0,0" Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">Volver</Button>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="42" Margin="10,40,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Elemento.Nombre}" VerticalAlignment="Top" Width="254" FontSize="24"/>
+        <Button Content="Salir" HorizontalAlignment="Left" Margin="44,270,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Command="{Binding Salir, Mode=OneWay}"/>
     </Grid>
 </UserControl>

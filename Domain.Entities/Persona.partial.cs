@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace SDI.Model {
+    public class PersonaMetadata {
+        public DateTime FechaNacimiento { get; set; }
+
+    }
+    [MetadataType(typeof(PersonaMetadata))]
     public partial class Persona {
         public Persona(int idPersona, string nombre, string apellidos) {
             this.idPersona = idPersona;
