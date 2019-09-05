@@ -18,7 +18,11 @@ namespace SDI.Model {
             return new Persona(2, "Carmelo", "Coton");
         }
 
-        public void Add(Persona item) { }
+        public void Add(Persona item) {
+            if (item.HasErrors)
+                throw new Exception("Datos sin validar");
+            // Repositorio
+        }
         public void Modify(Persona item) { }
         public void Delete(Persona item) { }
     }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0DE9026A-5F53-4E44-B000-CE418B23903D}</ProjectGuid>
+    <ProjectGuid>{5F8A6456-C5E6-4985-80E1-B2310F7ECC05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Domain.Services</RootNamespace>
+    <AssemblyName>Domain.Services</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,34 +42,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="entities\Partial\person.partial.cs" />
-    <Compile Include="entities\Person.cs">
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
-    <Compile Include="entities\PersonPhone.cs">
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
-    <Compile Include="entities\UoW.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
+    <Compile Include="PersonaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{7efa788a-4be2-4caf-94e9-1b4a7c2884c8}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.core\Domain.core.csproj">
       <Project>{ff9d853c-84b9-4ede-b138-1a97624ecb3a}</Project>
       <Name>Domain.core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="entities\UoW.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UoW.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
+      <Project>{f7fae33d-831e-40a5-a69c-3bcc32b6b610}</Project>
+      <Name>Domain.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

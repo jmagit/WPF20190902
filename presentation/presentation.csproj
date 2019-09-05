@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0DE9026A-5F53-4E44-B000-CE418B23903D}</ProjectGuid>
+    <ProjectGuid>{82619DB6-AAE7-4965-8300-29A187812C21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>presentation</RootNamespace>
+    <AssemblyName>presentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Mvvm.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,18 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="entities\Partial\person.partial.cs" />
-    <Compile Include="entities\Person.cs">
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
-    <Compile Include="entities\PersonPhone.cs">
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
-    <Compile Include="entities\UoW.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UoW.tt</DependentUpon>
-    </Compile>
+    <Compile Include="PersonasVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,15 +51,14 @@
       <Project>{ff9d853c-84b9-4ede-b138-1a97624ecb3a}</Project>
       <Name>Domain.core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="entities\UoW.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UoW.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
+      <Project>{f7fae33d-831e-40a5-a69c-3bcc32b6b610}</Project>
+      <Name>Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Services\Domain.Services.csproj">
+      <Project>{5f8a6456-c5e6-4985-80e1-b2310f7ecc05}</Project>
+      <Name>Domain.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

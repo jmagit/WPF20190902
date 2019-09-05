@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SDI"
+             xmlns:Converters="clr-namespace:SDI.Converters"
              Startup="Application_Startup" DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
 
@@ -9,6 +10,10 @@
             <GradientStop Color="#FF03B9B1" Offset="1"/>
             <GradientStop Color="White"/>
         </LinearGradientBrush>
+        <Converters:StringToNullConverter x:Key="StringToNullConverter"/>
+        <Converters:CeroToInvisibilityConverter x:Key="CeroToInvisibilityConverter"/>
+        <Converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter"/>
+        <Converters:BooleanToInvisibilityConverter x:Key="BooleanToInvisibilityConverter"/>
 
     </Application.Resources>
 </Application>

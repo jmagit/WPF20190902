@@ -56,9 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Base\ObservableBase.cs" />
-    <Compile Include="Model\Persona.cs" />
-    <Compile Include="Model\PersonaService.cs" />
+    <Compile Include="Converters\Cadenas.cs" />
+    <Compile Include="Converters\Visivilidad.cs" />
     <Compile Include="ViewModels\PersonasVM.cs" />
     <Compile Include="Vistas\CDlg.xaml.cs">
       <DependentUpon>CDlg.xaml</DependentUpon>
@@ -136,6 +135,27 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Imagenes\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.core\Domain.core.csproj">
+      <Project>{ff9d853c-84b9-4ede-b138-1a97624ecb3a}</Project>
+      <Name>Domain.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
+      <Project>{f7fae33d-831e-40a5-a69c-3bcc32b6b610}</Project>
+      <Name>Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Services\Domain.Services.csproj">
+      <Project>{5f8a6456-c5e6-4985-80e1-b2310f7ecc05}</Project>
+      <Name>Domain.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Base\" />
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\exclamation.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

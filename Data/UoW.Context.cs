@@ -12,6 +12,7 @@ namespace Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using Domain.entities;
     
     public partial class AdventureWorks2017Entities : DbContext
     {

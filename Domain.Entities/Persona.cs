@@ -1,4 +1,4 @@
-﻿using SDI.Base;
+﻿using Domain.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SDI.Model {
-    public class Persona: ObservableBase {
+    public partial class Persona: EntityBase {
         private int idPersona = 0;
         public int IdPersona {
             get => idPersona;
@@ -22,14 +22,19 @@ namespace SDI.Model {
             get => apellidos;
             set { apellidos = value; RaisePropertyChanged(nameof(Apellidos)); }
         }
+        private DateTime fechaNacimiento;
+        public DateTime FechaNacimiento {
+            get => fechaNacimiento;
+            set {
+                fechaNacimiento = value;
+                RaisePropertyChanged(nameof(FechaNacimiento));
+                FechaNacimientoChanged();
+            }
+        }
 
         public Persona() {
 
         }
-        public Persona(int idPersona, string nombre, string apellidos) {
-            this.idPersona = idPersona;
-            this.nombre = nombre;
-            this.apellidos = apellidos;
-        }
+
     }
 }

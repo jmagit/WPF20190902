@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SDI.Vistas.ucPersonasLST"
+﻿<UserControl  x:Class="SDI.Vistas.ucPersonasLST"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,6 +10,31 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <vm:PersonasVM x:Key="VM" />
+        <LinearGradientBrush x:Key="ColorError" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF90808" Offset="1"/>
+            <GradientStop Color="#FFF9D7D7" Offset="0.525"/>
+        </LinearGradientBrush>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <Grid DataContext="{Binding}" Name="CntrlContainer">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <AdornedElementPlaceholder Name="AdornedCntrl" />
+                <Image x:Name="iconoErr" Stretch="None" Source="/SDI;component/Imagenes/exclamation.png" 
+					   ToolTip="{Binding ElementName=AdornedCntrl, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" Grid.Column="1" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CntrValidado" TargetType="{x:Type Control}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                    <Setter Property="Background" Value="{StaticResource ColorError}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </UserControl.Resources>
     <Grid DataContext="{Binding Mode=OneWay, Source={StaticResource VM}}">
         <Grid.ColumnDefinitions>
@@ -20,22 +45,26 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="24" FontStyle="Italic" Visibility="{Binding VerDetalle, Converter={StaticResource BooleanToVisibilityConverter}}" >Mantenimiento de <LineBreak/> <Bold>Personas</Bold></TextBlock>
+        <TextBlock FontSize="24" FontStyle="Italic" 
+                   Visibility="{Binding VerDetalle, Converter={StaticResource BooleanToInvisibilityConverter}}" ><Run Text="Mantenimiento de"/><LineBreak/><Bold><Run Text="Personas"/></Bold></TextBlock>
         <DataGrid Grid.Row="1" ItemsSource="{Binding Listado}" SelectedIndex="0" SelectedItem="{Binding Elemento}" />
         <StackPanel Grid.Column="1" Grid.RowSpan="2" >
-            <Button Click="Ver_Click" Background="{DynamicResource ColorBoton}">Ver</Button>
-            <Button x:Name="btnNuevo" Click="BtnNuevo_Click">Añadir</Button>
-            <Button>Modificar</Button>
-            <Button>Borrar</Button>
-            <Button Click="Salir_Click">Salir</Button>
+            <Button Click="Ver_Click" Background="{DynamicResource ColorBoton}" Content="Ver"/>
+            <Button x:Name="btnNuevo" Click="BtnNuevo_Click" Content="Añadir"/>
+            <Button Content="Modificar"/>
+            <Button Content="Borrar"/>
+            <Button Click="Salir_Click" Content="Salir"/>
             <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource VM}}"
-                    CommandParameter="true">A</Button>
+                    CommandParameter="true" Content="A"/>
             <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource VM}}"
-                    CommandParameter="false">C</Button>
-            <TextBox Height="23" TextWrapping="Wrap" 
-                     Text="{Binding Elemento.Nombre, UpdateSourceTrigger=PropertyChanged, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}"/>
-            <TextBox Height="23" TextWrapping="Wrap" 
-                     Text="{Binding Elemento.IdPersona, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, StringFormat=\{0:C\}}"/>
+                    CommandParameter="false" Content="C"/>
+            <StackPanel Visibility="{Binding Listado.Count, Converter={StaticResource CeroToInvisibilityConverter}, Mode=OneWay}">
+                <TextBox Height="23" TextWrapping="Wrap" 
+                     Text="{Binding Elemento.Nombre, BindsDirectlyToSource=True, Converter={StaticResource StringToNullConverter}, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Style="{DynamicResource CntrValidado}"/>
+                <TextBox Height="23" TextWrapping="Wrap" 
+                     Text="{Binding Elemento.Apellidos, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+
+            </StackPanel>
         </StackPanel>
         <Popup x:Name="popDlg" PopupAnimation="Slide" Placement="Left" PlacementTarget="{Binding ElementName=btnNuevo, Mode=OneWay}" AllowsTransparency="True" Width="200" Height="100" IsOpen="{Binding VerDetalle, Source={StaticResource VM}}">
             <Border CornerRadius="10" Background="#FFFDFDD4" Padding="5">
