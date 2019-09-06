@@ -11,6 +11,10 @@ using SDI.Vistas;
 
 namespace SDI {
     public class NavigationController {
+        class ResumenVM {
+            public PersonasVM JefeVM { get; set; }
+            public PersonasVM EmpleadoVM { get; set; }
+        }
         static MainWindow mainWindow;
         static MainWindow MainWindow {
             get {
@@ -23,8 +27,17 @@ namespace SDI {
         }
 
         public static void AbrirPersonasListCmd() {
-            MainWindow.Cambia(new ucPersonasLST());
+            var vm = new PersonasVM();
+            var uc = new ucPersonasLST();
+            uc.DataContext = vm;
+            vm.AbrirDetalle += Vm_AbrirDetalle;
+            MainWindow.Cambia(uc);
         }
+
+        private static void Vm_AbrirDetalle(PasarVMArgs obj) {
+            AbrirPersonasDetCmd(obj.VM as PersonasVM);
+        }
+
         public static ICommand AbrirPersonasList {
             get {
                 return new DelegateCommand(AbrirPersonasListCmd);
@@ -32,10 +45,9 @@ namespace SDI {
         }
         public static void AbrirPersonasDetCmd(PersonasVM vm) {
             var uc = new ucPersonasFRM();
-            //(uc.Content as FrameworkElement).DataContext = vm;
             uc.DataContext = vm;
             vm.CerrarDetalle += Vm_CerrarDetalle;
-            MainWindow.Cambia(new ucPersonasFRM());
+            MainWindow.Cambia(uc);
         }
 
         private static void Vm_CerrarDetalle(EventArgs obj) {

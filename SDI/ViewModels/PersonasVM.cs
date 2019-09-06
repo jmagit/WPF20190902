@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SDI.ViewModels {
+    public class PasarVMArgs {
+        public object VM { get; set; }
+    }
     //public class BaseMntViewModel<E, S> : ObservableBase {
     //    private ObservableCollection<E> listado;
 
@@ -90,13 +93,13 @@ namespace SDI.ViewModels {
     //}
 
     public class PersonasVM : ObservableBase {
-        private ObservableCollection<Persona> listado;
+        private ObservableCollection<Persona> listado = new ObservableCollection<Persona>();
 
         public ObservableCollection<Persona> Listado {
             get => listado;
             set { listado = value; RaisePropertyChanged(nameof(Listado)); }
         }
-        private Persona elemento;
+        private Persona elemento = new Persona();
 
         public Persona Elemento {
             get => elemento;
@@ -107,9 +110,11 @@ namespace SDI.ViewModels {
 
         public PersonasVM() {
             Listado = srv.getAll();
+            if(Listado.Count > 0)
+                Elemento = Listado[0];
         }
 
-        public event Action<EventArgs> AbrirDetalle;
+        public event Action<PasarVMArgs> AbrirDetalle;
         public event Action<EventArgs> CerrarDetalle;
         public event Action<ConsoleCancelEventArgs> PedirConfirmacion;
 
@@ -133,7 +138,11 @@ namespace SDI.ViewModels {
             get {
                 return new DelegateCommand<bool>(
                     cmdParam => {
-                        NavigationController.AbrirPersonasDetCmd(this);
+                        if (AbrirDetalle != null)
+                            AbrirDetalle(new PasarVMArgs() { VM = this });
+                        else
+                            throw new Exception("Falta el controlador de eventos.");
+                        // NavigationController.AbrirPersonasDetCmd(this);
                     }
                     );
             }

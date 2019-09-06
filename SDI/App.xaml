@@ -5,15 +5,20 @@
              xmlns:Converters="clr-namespace:SDI.Converters"
              Startup="Application_Startup" DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-
-        <LinearGradientBrush x:Key="ColorBoton" EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF03B9B1" Offset="1"/>
-            <GradientStop Color="White"/>
-        </LinearGradientBrush>
-        <Converters:StringToNullConverter x:Key="StringToNullConverter"/>
-        <Converters:CeroToInvisibilityConverter x:Key="CeroToInvisibilityConverter"/>
-        <Converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter"/>
-        <Converters:BooleanToInvisibilityConverter x:Key="BooleanToInvisibilityConverter"/>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Datos.xaml" />
+                <ResourceDictionary Source="/Resources/Estilo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Converters:MayorQueConverter x:Key="MayorQueConverter"/>
+            <LinearGradientBrush x:Key="ColorBoton" EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF03B9B1" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+            <Converters:StringToNullConverter x:Key="StringToNullConverter"/>
+            <Converters:CeroToInvisibilityConverter x:Key="CeroToInvisibilityConverter"/>
+            <Converters:NullToInvisibilityConverter x:Key="NullToInvisibilityConverter"/>
+            <Converters:BooleanToInvisibilityConverter x:Key="BooleanToInvisibilityConverter"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

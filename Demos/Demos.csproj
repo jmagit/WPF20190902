@@ -111,5 +111,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\accept.png" />
+    <Resource Include="images\btn-window-close-2.png" />
+    <Resource Include="images\check_azul.png" />
+    <Resource Include="images\delete.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

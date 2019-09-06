@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SDI.Vistas"
              xmlns:vm="clr-namespace:SDI.ViewModels"
-             xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"  x:Class="SDI.Vistas.ucPersonasLST"
+             xmlns:model="clr-namespace:SDI.Model;assembly=Domain.Entities"
+             xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"  xmlns:Converters="clr-namespace:SDI.Converters" x:Name="userControl"  x:Class="SDI.Vistas.ucPersonasLST"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:PersonasVM}}" RenderTransformOrigin="0.5,0.5">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <vm:PersonasVM x:Key="VM" />
         <LinearGradientBrush x:Key="ColorError" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF90808" Offset="1"/>
             <GradientStop Color="#FFF9D7D7" Offset="0.525"/>
@@ -35,9 +35,139 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate DataType="{x:Type model:Persona}" x:Key="PersonaLB">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Apellidos}" />
+                <TextBlock Text=", " />
+                <TextBlock Text="{Binding Nombre}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type model:Persona}" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Nombre}" />
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding Apellidos}" />
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="kk" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFA0EAF5" Offset="1"/>
+                        <GradientStop Color="White" Offset="0"/>
+                    </RadialGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Storyboard x:Key="OnMouseEnter1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-84.857"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="3.857"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1.286"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="32.143"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="16.714"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.611"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.724"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnLoaded1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="userControl">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="userControl">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </UserControl.Resources>
-    <Grid>
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="button">
+            <BeginStoryboard x:Name="OnMouseEnter1_BeginStoryboard" Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="OnLoaded1_BeginStoryboard" Storyboard="{StaticResource OnLoaded1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid >
         <Grid.Resources>
             <CollectionViewSource x:Key="DatosOrdenados" Source="{Binding Listado}" >
                 <CollectionViewSource.SortDescriptions>
@@ -45,9 +175,6 @@
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
         </Grid.Resources>
-        <Grid.DataContext>
-            <Binding Mode="OneWay" Source="{StaticResource VM}"/>
-        </Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -55,20 +182,37 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock FontSize="24" FontStyle="Italic" 
                    Visibility="{Binding VerDetalle, Converter={StaticResource BooleanToInvisibilityConverter}}" ><Run Text="Mantenimiento de"/><LineBreak/><Bold><Run Text="Personas"/></Bold></TextBlock>
         <DataGrid Grid.Row="1" ItemsSource="{Binding Mode=OneWay, Source={StaticResource DatosOrdenados}}" SelectedIndex="0" SelectedItem="{Binding Elemento}" />
         <StackPanel Grid.Column="1" Grid.RowSpan="2" >
-            <Button Click="Ver_Click" Background="{DynamicResource ColorBoton}" Content="Ver"/>
-            <Button x:Name="btnNuevo" Click="BtnNuevo_Click" Content="Añadir"/>
-            <Button Content="Modificar" Command="{Binding Modificar, Mode=OneWay}"/>
-            <Button Content="Borrar"/>
-            <Button Click="Salir_Click" Content="Salir"/>
-            <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource VM}}"
-                    CommandParameter="true" Content="A"/>
-            <Button Command="{Binding Abrir, Mode=OneWay, Source={StaticResource VM}}"
-                    CommandParameter="false" Content="C"/>
+            <Button x:Name="button" Click="Ver_Click" Content="Ver" FontSize="18" FontWeight="Bold" Style="{DynamicResource kk}" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF03B9B1" Offset="1"/>
+                        <GradientStop Color="#FFE82222"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnNuevo" Click="BtnNuevo_Click" Content="Añadir" Style="{DynamicResource kk}"/>
+            <Button Content="Modificar" Command="{Binding Modificar, Mode=OneWay}" Style="{DynamicResource kk}"/>
+            <Button Content="Borrar" Style="{DynamicResource kk}"/>
+            <Button Click="Salir_Click" Content="Salir" Style="{DynamicResource kk}"/>
+            <Button Command="{Binding Abrir, Mode=OneWay}"
+                    CommandParameter="true" Content="A" Style="{DynamicResource kk}"/>
+            <Button Command="{Binding Abrir, Mode=OneWay}"
+                    CommandParameter="false" Content="C" Style="{DynamicResource kk}"/>
             <StackPanel Visibility="{Binding Listado.Count, Converter={StaticResource CeroToInvisibilityConverter}, Mode=OneWay}" DataContext="{Binding Elemento}">
                 <TextBox Height="23" TextWrapping="Wrap" 
                      Text="{Binding Nombre, BindsDirectlyToSource=True, Converter={StaticResource StringToNullConverter}, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Style="{DynamicResource CntrValidado}" Visibility="{Binding Visibility, ElementName=textBox}"/>
@@ -76,16 +220,28 @@
                      Text="{Binding Apellidos, BindsDirectlyToSource=True, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
 
             </StackPanel>
+            <TextBox Height="23" TextWrapping="Wrap" 
+                     Text="{Binding Listado[0].Nombre, BindsDirectlyToSource=True, Converter={StaticResource StringToNullConverter}, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Style="{DynamicResource CntrValidado}" Visibility="{Binding Visibility, ElementName=textBox}"/>
         </StackPanel>
-        <Popup x:Name="popDlg" PopupAnimation="Slide" Placement="Left" PlacementTarget="{Binding ElementName=btnNuevo, Mode=OneWay}" AllowsTransparency="True" Width="200" Height="100" IsOpen="{Binding VerDetalle, Source={StaticResource VM}}">
+        <Popup x:Name="popDlg" PopupAnimation="Slide" Placement="Left" PlacementTarget="{Binding ElementName=btnNuevo, Mode=OneWay}" AllowsTransparency="True" Width="200" Height="100" IsOpen="{Binding VerDetalle}">
             <Border CornerRadius="10" Background="#FFFDFDD4" Padding="5">
                 <Grid>
                     <Button x:Name="btnCerrarPOP" Content="Cerrar" HorizontalContentAlignment="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                            Command="{Binding Guardar, Mode=OneWay, Source={StaticResource VM}}" 
+                            Command="{Binding Guardar, Mode=OneWay}" 
                             />
                 </Grid>
             </Border>
         </Popup>
-
+        <ListBox Grid.Row="2" ItemsSource="{Binding Listado}" />
+        <WrapPanel Grid.Row="3">
+            <WrapPanel.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Resources/Datos.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </WrapPanel.Resources>
+            <ContentPresenter Content="{Binding Elemento}" />
+        </WrapPanel>
     </Grid>
 </UserControl>
